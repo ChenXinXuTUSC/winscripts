@@ -1,0 +1,45 @@
+{
+	"version": "2.0.0",
+	"options": {
+		"cwd": "${workspaceFolder}"
+	},
+	"tasks": [
+		{
+			"label": "CMake configure",
+			"type": "cmake",
+			"command": "configure",
+			"problemMatcher": [],
+			"detail": "CMake template configure task"
+		},
+		{
+			"label": "generate Makefiles",
+			"type": "shell",
+			"command": "make",
+			"args": [
+				"-C", "${workspaceFolder}/build"
+			],
+            "dependsOn": [
+                "CMake configure"
+            ]
+		},
+        {
+            "label": "install targets",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "-C", "${workspaceFolder}/build",
+                "install"
+            ],
+            "dependsOn": [
+                "generate Makefiles"
+            ]
+        },
+		{
+			"label": "build workspace",
+			"group": "build",
+			"dependsOn": [
+				"install targets"
+			]
+		}
+	]
+}

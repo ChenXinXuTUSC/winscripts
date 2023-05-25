@@ -1,0 +1,6 @@
+{
+    "cmake.configureArgs": [
+        "-DUSE_SHARED_LIB=ON",
+        "-DUSE_STATIC_LIB=OFF"
+    ]
+}
