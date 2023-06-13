@@ -4,11 +4,11 @@ echo if you are using unix-like os, please switch
 echo to copy.sh.
 echo\
 
+set curr_path=%~dp0
 set /p dist_path= please specify the template path: 
 if not exist %dist_path% (
     md %dist_path%
 )
-set curr_path=%~dp0
 
 echo curr_path: %curr_path%
 echo dist_path: %dist_path%
@@ -23,11 +23,11 @@ md %dist_path%\cmake
 
 md %dist_path%\lib
 md %dist_path%\lib\Debug
-md %dist_path%\lib\Debug\STATIC
 md %dist_path%\lib\Debug\SHARED
+md %dist_path%\lib\Debug\STATIC
 md %dist_path%\lib\Release
-md %dist_path%\lib\Release\STATIC
 md %dist_path%\lib\Release\SHARED
+md %dist_path%\lib\Release\STATIC
 xcopy %dist_path%\lib %dist_path%\runtimelib\ /s /e /h
 
 md %dist_path%\doc

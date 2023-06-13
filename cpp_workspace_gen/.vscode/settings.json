@@ -8,6 +8,5 @@
     "cmake.configureArgs": [
         "-DUSE_SHARED_LIB=ON",
         "-DUSE_STATIC_LIB=OFF"
-    ],
-    "cmake.cmakePath": "/home/fredom/.local/bin/cmake/cmake",
+    ]
 }
