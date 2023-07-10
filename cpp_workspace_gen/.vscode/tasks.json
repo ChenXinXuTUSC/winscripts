@@ -14,7 +14,7 @@
 		{
 			"label": "generate Makefiles",
 			"type": "shell",
-			"command": "make",
+			"command": "mingw32-make",
 			"args": [
 				"-C", "${workspaceFolder}/build"
 			],
@@ -25,7 +25,7 @@
         {
             "label": "install targets",
             "type": "shell",
-            "command": "make",
+            "command": "mingw32-make",
             "args": [
                 "-C", "${workspaceFolder}/build",
                 "install"
