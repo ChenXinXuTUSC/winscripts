@@ -9,10 +9,14 @@ SET(CMAKE_C_STANDARD 17)
 INCLUDE(${PROJECT_SOURCE_DIR}/cmake/macro.cmake)
 
 SET(header_dirs )
-FIND_HEADER_DIRECTORIES(${PROJECT_SOURCE_DIR}/SFML-2.5.1/include return_list "")
-LIST(APPEND header_dirs ${return_list})
+# use the following form to search your own header file paths:
+#   FIND_HEADER_DIRECTORIES(path/to/your/headers return_list "")
+#   LIST(APPEND header_dirs ${return_list})
+
 FIND_HEADER_DIRECTORIES(${PROJECT_SOURCE_DIR}/include return_list "")
 LIST(APPEND header_dirs ${return_list})
+LIST(APPEND header_dirs ${PROJECT_SOURCE_DIR}/include)
+
 INCLUDE_DIRECTORIES(${header_dirs})
 PRINT_LIST_ITEM("${header_dirs}" "HEADER LIST" "")
 
