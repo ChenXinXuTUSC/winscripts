@@ -1,4 +1,4 @@
-#include "dummy.h"
+#include "dummy/dummy.h"
 
 int main(int argc, char** argv)
 {
