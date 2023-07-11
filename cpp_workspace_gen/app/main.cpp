@@ -1,7 +1,12 @@
 #include "dummy/dummy.h"
+#include "log.h"
 
-int main(int argc, char** argv)
+
+int main(void)
 {
-    print_msg("hello world");
+    print_msg("Hello, world!");
+    LOG(LOG_LVL::DBUG, GRN("Hello"), YLW(","), RED("world!"));
+    LOG(LOG_LVL::DBUG);
     return 0;
 }
+
