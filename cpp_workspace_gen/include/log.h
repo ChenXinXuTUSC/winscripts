@@ -1,6 +1,5 @@
 #ifndef LOG_H
 #define LOG_H
-
 #include <iostream>
 #include <string>
 
@@ -54,10 +53,10 @@ enum class LOG_LVL
     FATL = 0,
 };
 
-template<typename... Type>
-void print_varlen_msgs(std::string file, int line, LOG_LVL level, Type... msgs);
-template<typename... Type>
-void print_varlen_msgs(std::string file, int line, LOG_LVL level, Type... msgs) {
+template<typename... varlen_type>
+void print_varlen_msgs(std::string file, int line, LOG_LVL level, varlen_type... msgs);
+template<typename... varlen_type>
+inline void print_varlen_msgs(std::string file, int line, LOG_LVL level, varlen_type... msgs) {
     std::string prefix = "[NONE]";
     switch (level)
     {
@@ -86,7 +85,12 @@ void print_varlen_msgs(std::string file, int line, LOG_LVL level, Type... msgs) 
     }
     std::cout << prefix << ' ';
     ((std::cout << msgs << ' '), ...) << std::endl;
-    std::cout << "    " << file << ':' << line << std::endl;
+    std::cout << "    " << file << ' ' << line << std::endl;
+}
+// in case that LOG doesn't receive any strings.
+inline void print_varlen_msgs(std::string file, int line, LOG_LVL level)
+{
+    print_varlen_msgs(file, line, level, "");
 }
 
 #define LOG(LEVEL, ...) print_varlen_msgs(__FILE__, __LINE__, LEVEL, ## __VA_ARGS__)

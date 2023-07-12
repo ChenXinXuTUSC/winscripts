@@ -13,9 +13,3 @@ std::string color_str(std::string str, LOG_COLOR fore_code, LOG_COLOR back_code)
     std::string ret = concate_strs("\033[1", fore_code_str, back_code_str, "m", str, "\033[0m");
     return ret;
 }
-
-template<> // in case that LOG doesn't receive any strings.
-void print_varlen_msgs(std::string file, int line, LOG_LVL level)
-{
-    print_varlen_msgs(file, line, level, "");
-}
