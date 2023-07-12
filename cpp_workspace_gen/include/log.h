@@ -85,7 +85,7 @@ void print_varlen_msgs(std::string file, int line, LOG_LVL level, Type... msgs) 
     }
     std::cout << prefix << ' ';
     ((std::cout << msgs << ' '), ...) << std::endl;
-    std::cout << "    " << file << ' ' << line << std::endl;
+    std::cout << "    " << file << ':' << line << std::endl;
 }
 template<> // in case that LOG doesn't receive any strings.
 void print_varlen_msgs(std::string file, int line, LOG_LVL level)
