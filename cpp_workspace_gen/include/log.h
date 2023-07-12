@@ -1,5 +1,6 @@
 #ifndef LOG_H
 #define LOG_H
+
 #include <iostream>
 #include <string>
 
@@ -86,11 +87,6 @@ void print_varlen_msgs(std::string file, int line, LOG_LVL level, Type... msgs) 
     std::cout << prefix << ' ';
     ((std::cout << msgs << ' '), ...) << std::endl;
     std::cout << "    " << file << ':' << line << std::endl;
-}
-template<> // in case that LOG doesn't receive any strings.
-void print_varlen_msgs(std::string file, int line, LOG_LVL level)
-{
-    print_varlen_msgs(file, line, level, "");
 }
 
 #define LOG(LEVEL, ...) print_varlen_msgs(__FILE__, __LINE__, LEVEL, ## __VA_ARGS__)
