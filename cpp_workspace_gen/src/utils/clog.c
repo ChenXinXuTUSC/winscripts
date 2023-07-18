@@ -1,5 +1,8 @@
 #include "clog.h"
 
+char log_buf[BUF_SZE];
+char tmp_buf[BUF_SZE];
+
 char* color_str(int fore_code, int back_code, const char *str)
 {
     char fore_code_buf[8];
@@ -22,6 +25,10 @@ char* color_str(int fore_code, int back_code, const char *str)
 
 char* log_prefix(int level)
 {
+    // entry point will clean log buffer and tmp buffer
+    memset(log_buf, 0, BUF_SZE);
+    memset(tmp_buf, 0, BUF_SZE);
+
     const char* prefix = "";
     switch (level)
     {
@@ -49,7 +56,7 @@ char* log_prefix(int level)
         break;
     }
 
-    memcpy(log_buf, tmp_buf, strlen(tmp_buf));
+    strcat(log_buf, tmp_buf);
 
     return tmp_buf;
 }
@@ -61,3 +68,21 @@ char* log_suffix(const char *file, int line)
     return tmp_buf;
 }
 
+
+// void init_log_utils()
+// {
+//     if (log_buf == nullptr)
+//         log_buf = (char*)malloc(BUF_SZE * sizeof(char));
+//     if (tmp_buf == nullptr)
+//         tmp_buf = (char*)malloc(BUF_SZE * sizeof(char));
+    
+//     memset(log_buf, 0, BUF_SZE);
+//     memset(tmp_buf, 0, BUF_SZE);
+// }
+// void clean_log_utils()
+// {
+//     if (tmp_buf != nullptr)
+//         free(tmp_buf);
+//     if (log_buf != nullptr)
+//         free(log_buf);
+// }

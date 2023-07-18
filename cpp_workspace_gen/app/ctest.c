@@ -1,7 +1,11 @@
-#include "clog.h"
+#include "utils/clog.h"
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
-    LOG(DBUG, "%d %s", 1024, GRN("hello, world"));
+    LOG(DBUG, "hello, world");
+
+    print_addr1();
+    print_addr2();
+
     return 0;
 }

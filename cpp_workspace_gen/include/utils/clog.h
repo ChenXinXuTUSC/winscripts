@@ -1,5 +1,5 @@
-#ifndef COMMON_H
-#define COMMON_H
+#ifndef CLOG_H
+#define CLOG_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,6 +9,7 @@
 
 #define true 1
 #define false 0
+#define nullptr NULL
 
 enum LOG_COLOR_C
 {
@@ -35,8 +36,8 @@ enum LOG_COLOR_C
 char* color_str(int fore_code, int back_code, const char* str);
 
 #define BUF_SZE 1024
-char log_buf[BUF_SZE];
-char tmp_buf[BUF_SZE];
+extern char log_buf[BUF_SZE];
+extern char tmp_buf[BUF_SZE];
 
 #define BLE(STR) color_str(FORE_BLE, BACK_ORG, STR)
 #define GRN(STR) color_str(FORE_GRN, BACK_ORG, STR)
@@ -57,10 +58,15 @@ enum LOG_LVL_C
     FATL = 0,
 };
 
-#define LOG(LEVEL, FMT, ...) \
-    log_prefix(LEVEL); \
-    sprintf(log_buf + strlen(log_buf), FMT, ## __VA_ARGS__); \
-    log_suffix(__FILE__, __LINE__); \
-    printf("%s\n", log_buf);
+void print_addr1();
+void print_addr2();
 
-#endif // common.h
+#define LOG(LEVEL, FMT, ...) \
+    { \
+        log_prefix(LEVEL); \
+        sprintf(log_buf + strlen(log_buf), FMT, ## __VA_ARGS__); \
+        log_suffix(__FILE__, __LINE__); \
+        printf("%s\n", log_buf); \
+    }
+
+#endif // clog.h
