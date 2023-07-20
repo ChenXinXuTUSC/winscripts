@@ -7,26 +7,27 @@ ENDIF()
 
 FILE(
     GLOB_RECURSE RUNTIMELIB_LIST
-    ${PROJECT_SOURCE_DIR}/runtimelib/${CMAKE_BUILD_TYPE}/${LIB_TYPE}/*${SRCLIB_SUFFIX}
+    ${PROJECT_SOURCE_DIR}/src/runtimelib/${CMAKE_BUILD_TYPE}/${LIB_TYPE}/*${SRCLIB_SUFFIX}
 )
 LIST(APPEND RUNTIMELIB_LIST ${SRC_LIB})
 LIST(REMOVE_DUPLICATES RUNTIMELIB_LIST)
 PRINT_LIST_ITEM("${RUNTIMELIB_LIST}" "RUNTIME LIB LIST" "")
 
-
-
-
-
 FOREACH(app ${APP_LIST})
 	GET_FILENAME_COMPONENT(output ${app} NAME_WE)
 	ADD_EXECUTABLE(${output} ${app})
 
-	SET(to_be_linked )
+	SET(LINKED_LIBS )
     # self runtime libs
 	GET_LIB_NAME("${RUNTIMELIB_LIST}" return_list)
     TARGET_LINK_LIBRARIES(${output} ${return_list})
     INSTALL_SHARED_LIB("${RUNTIMELIB_LIST}" ${SHARED_LIB_SUFFIX} ${EXECUTABLE_OUTPUT_PATH})
-    LIST(APPEND to_be_linked ${return_list})
+    LIST(APPEND LINKED_LIBS ${return_list})
+    # third party libs
+    GET_LIB_NAME("${LIB_LIST}" return_list)
+    TARGET_LINK_LIBRARIES(${output} ${return_list})
+    INSTALL_SHARED_LIB("${LIB_LIST}" ${SHARED_LIB_SUFFIX} ${EXECUTABLE_OUTPUT_PATH})
+    LIST(APPEND LINKED_LIBS ${return_list})
 
 	# IF (LIB_LIST)
 	# 	FOREACH (lib ${LIB_LIST})
@@ -53,9 +54,10 @@ FOREACH(app ${APP_LIST})
     #             )
     #         ENDIF()
             
-    #         SET(to_be_linked ${to_be_linked} ${lib_name})
+    #         SET(LINKED_LIBS ${LINKED_LIBS} ${lib_name})
 	# 	ENDFOREACH()
 
 	# ENDIF()
-    MESSAGE("${output} will be linked with: ${to_be_linked}")
+    LIST(REMOVE_DUPLICATES LINKED_LIBS)
+    MESSAGE("exe-${output} will be linked with: ${LINKED_LIBS}")
 ENDFOREACH()

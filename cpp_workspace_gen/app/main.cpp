@@ -1,7 +1,6 @@
 #include "dummy/dummy.h"
 #include "utils/log.h"
 
-
 int main(void)
 {
     print_msg("Hello, world!");
