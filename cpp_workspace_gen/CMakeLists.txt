@@ -15,7 +15,7 @@ SET(header_dirs )
 
 FIND_HEADER_DIRECTORIES(${PROJECT_SOURCE_DIR}/include return_list "")
 LIST(APPEND header_dirs ${return_list})
-LIST(APPEND header_dirs ${PROJECT_SOURCE_DIR}/include)
+# LIST(APPEND header_dirs ${PROJECT_SOURCE_DIR}/include)
 
 INCLUDE_DIRECTORIES(${header_dirs})
 PRINT_LIST_ITEM("${header_dirs}" "HEADER LIST" "")
@@ -39,7 +39,6 @@ ELSE()
 ENDIF()
 
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/src/runtimelib/${CMAKE_BUILD_TYPE}/${LIB_TYPE})
-SET(SRC_LIB_NAME "mysrc")
 UNSET(lib_dirs CACHE)
 SET(lib_dirs )
 GET_ALL_SUBDIRS(${PROJECT_SOURCE_DIR}/lib result)

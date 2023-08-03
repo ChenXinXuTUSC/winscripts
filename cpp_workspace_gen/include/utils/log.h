@@ -1,7 +1,10 @@
 #ifndef LOG_H
 #define LOG_H
 #include <iostream>
+#include <sstream>
 #include <string>
+#include <chrono>
+#include <iomanip>
 
 template<typename... Type>
 std::string concate_strs(Type... strs);
@@ -57,6 +60,13 @@ template<typename... varlen_type>
 void print_varlen_msgs(std::string file, int line, LOG_LVL level, varlen_type... msgs);
 template<typename... varlen_type>
 inline void print_varlen_msgs(std::string file, int line, LOG_LVL level, varlen_type... msgs) {
+    std::ostringstream oss;
+
+    auto now = std::chrono::system_clock::now();
+    std::time_t time = std::chrono::system_clock::to_time_t(now);  
+    std::tm* timeinfo = std::localtime(&time); 
+    oss << std::put_time(timeinfo, "%Y-%m-%d %H:%M:%S") << ' ';
+
     std::string prefix = "[NONE]";
     switch (level)
     {
@@ -83,9 +93,12 @@ inline void print_varlen_msgs(std::string file, int line, LOG_LVL level, varlen_
     default:
         break;
     }
-    std::cout << prefix << ' ';
-    ((std::cout << msgs << ' '), ...) << std::endl;
-    std::cout << "    " << file << ' ' << line << std::endl;
+    oss << prefix << ' ';
+
+    ((oss << msgs << ' '), ...) << std::endl;
+    oss << "    " << file << ' ' << line << std::endl;
+
+    std::cout << oss.str();
 }
 // in case that LOG doesn't receive any strings.
 inline void print_varlen_msgs(std::string file, int line, LOG_LVL level)
