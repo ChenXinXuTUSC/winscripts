@@ -5,10 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "调试",
+            "name": "调试 - 动态链接",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/Debug/${fileBasenameNoExtension}",
+            "program": "${workspaceFolder}/bin/Debug/SHARED/${fileBasenameNoExtension}",
             "args": [
                 
             ],
@@ -32,10 +32,10 @@
             "preLaunchTask": "build workspace"
         },
         {
-            "name": "运行",
+            "name": "调试 - 静态链接",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/Debug/${fileBasenameNoExtension}.exe",
+            "program": "${workspaceFolder}/bin/Debug/STATIC/${fileBasenameNoExtension}",
             "args": [
                 
             ],
@@ -44,7 +44,6 @@
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "miDebuggerPath": "/usr/bin/gdb",
             "setupCommands": [
                 {
                     "description": "为 gdb 启用整齐打印",
@@ -58,6 +57,6 @@
                 }
             ],
             "preLaunchTask": "build workspace"
-        }
+        },
     ]
 }
