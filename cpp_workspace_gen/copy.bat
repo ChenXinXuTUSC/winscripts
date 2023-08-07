@@ -14,21 +14,18 @@ echo curr_path: %curr_path%
 echo dist_path: %dist_path%
 
 echo on
-md %dist_path%\app
-md %dist_path%\src
-md %dist_path%\bin
-md %dist_path%\include
-md %dist_path%\build
-md %dist_path%\cmake
+mkdir %dist_path%\app
+mkdir %dist_path%\src
+mkdir %dist_path%\bin
+mkdir %dist_path%\include
+mkdir %dist_path%\build
+mkdir %dist_path%\cmake
 
-md %dist_path%\lib
-md %dist_path%\lib\Debug
-md %dist_path%\lib\Debug\SHARED
-md %dist_path%\lib\Debug\STATIC
-md %dist_path%\lib\Release
-md %dist_path%\lib\Release\SHARED
-md %dist_path%\lib\Release\STATIC
-xcopy %dist_path%\lib %dist_path%\src\runtimelib\ /s /e /h
+mkdir %dist_path%\lib\generate\Debug\SHARED
+mkdir %dist_path%\lib\generate\Debug\STATIC
+mkdir %dist_path%\lib\generate\Release\SHARED
+mkdir %dist_path%\lib\generate\Release\STATIC
+xcopy %dist_path%\lib\generate\ %dist_path%\lib\imported\ /s /e /h
 
 md %dist_path%\doc
 md %dist_path%\.vscode
