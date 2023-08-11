@@ -3,7 +3,14 @@ PROJECT(test)
 
 # SET(CMAKE_BUILD_TYPE "Debug")
 SET(CMAKE_CXX_STANDARD 17)
-SET(CMAKE_C_STANDARD 17)
+SET(CMAKE_C_STANDARD   17)
+
+IF(WIN32)
+    # clang does not support __float128 type, which is  supported
+    # by GNU GCC/G++, to eliminate this lint error, an additional
+    # define macro is needed.
+    ADD_DEFINITIONS(-D__STRICT_ANSI__)
+ENDIF()
 
 # some useful macros(functions)
 INCLUDE(${PROJECT_SOURCE_DIR}/cmake/macro.cmake)
