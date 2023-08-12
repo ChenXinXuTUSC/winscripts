@@ -37,4 +37,6 @@ xcopy %curr_path%\app %dist_path%\app\  /s /e /h
 xcopy %curr_path%\src %dist_path%\src\  /s /e /h
 xcopy %curr_path%\include %dist_path%\include\  /s /e /h
 xcopy %curr_path%\cmake %dist_path%\cmake\  /s /e /h
+
 copy /-Y %curr_path%\CMakeLists.txt %dist_path%\CMakeLists.txt
+copy /-Y %curr_path%\.clang-tidy %dist_path%\.clang-tidy
