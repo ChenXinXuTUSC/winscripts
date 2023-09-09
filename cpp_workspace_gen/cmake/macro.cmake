@@ -21,7 +21,7 @@ MACRO(FIND_HEADER_DIRECTORIES target_dir return_list exclude_path_pattern)
         GLOB_RECURSE dir_list
         ${target_dir}/*.h ${target_dir}/*.hpp
     )
-	SET(return_list )
+	SET(return_list ${target_dir})
 	FOREACH(file_path ${dir_list})
 		GET_FILENAME_COMPONENT(dir_path ${file_path} PATH)
         SET(exclude_dirs )

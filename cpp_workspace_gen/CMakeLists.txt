@@ -22,7 +22,6 @@ SET(header_dirs )
 
 FIND_HEADER_DIRECTORIES(${PROJECT_SOURCE_DIR}/include return_list "")
 LIST(APPEND header_dirs ${return_list})
-# LIST(APPEND header_dirs ${PROJECT_SOURCE_DIR}/include)
 
 INCLUDE_DIRECTORIES(${header_dirs})
 PRINT_LIST_ITEM("${header_dirs}" "HEADER LIST" "")
