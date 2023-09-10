@@ -23,8 +23,8 @@ FILE(
 )
 SET(IMPORTED_LIB_LIST ${IMPORTED_LIB_LIST} PARENT_SCOPE)
 LIST(REMOVE_DUPLICATES IMPORTED_LIB_LIST)
-GET_LIB_NAME("${IMPORTED_LIB_LIST}" IMPORTED_LIB_NAMES)
-
+GET_LIB_NAME("${IMPORTED_LIB_LIST}" return_list)
+SET(IMPORTED_LIB_NAMES ${return_list})
 # build the entire src dir as a library first, as other
 # sub-directories may  have  cross  references  between
 # each other, and require symbols linking.
