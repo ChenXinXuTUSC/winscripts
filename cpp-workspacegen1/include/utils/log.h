@@ -12,7 +12,7 @@ template<typename... Type>
 std::string concate_strs(Type... strs)
 {
     std::string concate = "";
-    (concate += std::string(strs), ...); // only C++17 support fold expanding expression
+    ((concate += std::string(strs)), ...); // only C++17 support fold expanding expression
     return concate;
 }
 
