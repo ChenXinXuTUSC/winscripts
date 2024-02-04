@@ -9,16 +9,16 @@ char* color_str(int fore_code, int back_code, const char *str)
     char back_code_buf[8];
 
     if (fore_code == FORE_ORG)
-        sprintf_s(fore_code_buf, 8, "");
+        sprintf(fore_code_buf, "");
     else
-        sprintf_s(fore_code_buf, 8, ";%d", fore_code);
+        sprintf(fore_code_buf, ";%d", fore_code);
     
     if (back_code == BACK_ORG)
-        sprintf_s(back_code_buf, 8, "");
+        sprintf(back_code_buf, "");
     else
-        sprintf_s(back_code_buf, 8, ";%d", back_code);
+        sprintf(back_code_buf, ";%d", back_code);
 
-    sprintf_s(tmp_buf, BUF_SZE, "\033[1%s%sm%s\033[0m", fore_code_buf, back_code_buf, str);
+    sprintf(tmp_buf, "\033[1%s%sm%s\033[0m", fore_code_buf, back_code_buf, str);
 
     return tmp_buf;
 }
@@ -64,7 +64,7 @@ char* log_prefix(int level)
 
 char* log_suffix(const char *file, int line)
 {
-    sprintf_s(tmp_buf, BUF_SZE, "\n    %s %d\n", file, line);
+    sprintf(tmp_buf, "\n    %s %d\n", file, line);
     strcat(log_buf, tmp_buf);
     return tmp_buf;
 }

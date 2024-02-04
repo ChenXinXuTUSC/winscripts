@@ -14,7 +14,6 @@
 // GNU, it only exports  normal  functions,  other
 // type of data need to be exported explicitly
 #if defined(C_COMPILER_ID_MSVC)
-    #include <windows.h>
     #if defined(DLLCOMPILE)
         #define DLLUSAGE __declspec(dllexport)
     #else
