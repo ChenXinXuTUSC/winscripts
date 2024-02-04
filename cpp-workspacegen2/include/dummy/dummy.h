@@ -5,13 +5,18 @@
 // GNU, it only exports  normal  functions,  other
 // type of data need to be exported explicitly
 #if defined(CXX_COMPILER_ID_MSVC)
-    #include <windows.h>
-    #define DLLEXPORT __declspec(dllexport)
+    // MSVC expansion doesn't need
+    // any additional header files
+    #if defined(DLLCOMPILE)
+        #define DLLUSAGE __declspec(dllexport)
+    #else
+        #define DLLUSAGE __declspec(dllimport)
+    #endif
 #else
-    #define DLLEXPORT
+    #define DLLUSAGE
 #endif
 
-extern DLLEXPORT int dumyi;
+DLLUSAGE extern int dumyi;
 
 void print_msg(const char* msg);
 

@@ -25,6 +25,7 @@ elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
 else()
     message(FATAL_ERROR "unimplemented ${CMAKE_SYSTEM_NAME}")
 endif()
+add_compile_definitions(${CMAKE_SYSTEM_NAME})
 
 
 if(NOT CMAKE_BUILD_TYPE)
@@ -40,7 +41,7 @@ if(NOT CMAKE_BUILD_TYPE)
     message(FATAL_ERROR "no build type chosen")
 endif()
 string(TOUPPER ${CMAKE_BUILD_TYPE} BUILD_TYPE_UPPERCASE)
-add_definitions(-D"BUILD_TYPE_${BUILD_TYPE_UPPERCASE}")
+add_compile_definitions(BUILD_TYPE_${BUILD_TYPE_UPPERCASE})
 
 
 # compiler settings and definitions
@@ -49,8 +50,8 @@ if(MSVC)
     message("generator is MSVC and symbols will be exported to a .lib along with .dll")
     set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 endif()
-add_definitions(-D"CXX_COMPILER_ID_${CMAKE_CXX_COMPILER_ID}")
-add_definitions(-D"C_COMPILER_ID_${CMAKE_C_COMPILER_ID}")
+add_compile_definitions(CXX_COMPILER_ID_${CMAKE_CXX_COMPILER_ID})
+add_compile_definitions(C_COMPILER_ID_${CMAKE_C_COMPILER_ID})
 
 
 set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_BINARY_DIR}/install/${CMAKE_BUILD_TYPE})

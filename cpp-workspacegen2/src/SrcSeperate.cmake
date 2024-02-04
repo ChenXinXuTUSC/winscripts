@@ -22,6 +22,7 @@ foreach(sub_dir ${sub_dir_list})
         get_filename_component(sub_lib ${sub_dir} NAME_WE)
         list(APPEND sub_module_list ${sub_lib})
         add_library(${sub_lib} ${LIB_TYPE} ${sub_dir_src_list})
+        target_compile_definitions(${sub_lib} PRIVATE DLLCOMPILE=1)
         target_link_libraries(${sub_lib} src) # find cross reference to other modules
 
         if(USE_SHARED_LIB)

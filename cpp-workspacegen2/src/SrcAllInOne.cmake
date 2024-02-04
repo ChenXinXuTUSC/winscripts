@@ -5,6 +5,7 @@ file(
 )
 print_list("${src_list}" "SOURCE" "")
 add_library(src ${LIB_TYPE} ${src_list})
+target_compile_definitions(src PRIVATE DLLCOMPILE=1)
 
 target_link_libraries(src ${imported_shared_lib_name_list})
 target_link_libraries(src ${imported_static_lib_name_list})

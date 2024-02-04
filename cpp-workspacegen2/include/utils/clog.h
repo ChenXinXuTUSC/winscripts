@@ -15,9 +15,13 @@
 // type of data need to be exported explicitly
 #if defined(C_COMPILER_ID_MSVC)
     #include <windows.h>
-    #define DLLEXPORT __declspec(dllexport)
+    #if defined(DLLCOMPILE)
+        #define DLLUSAGE __declspec(dllexport)
+    #else
+        #define DLLUSAGE __declspec(dllimport)
+    #endif
 #else
-    #define DLLEXPORT
+    #define DLLUSAGE
 #endif
 
 enum LOG_COLOR_C
@@ -45,8 +49,8 @@ enum LOG_COLOR_C
 char* color_str(int fore_code, int back_code, const char* str);
 
 #define BUF_SZE 1024
-extern DLLEXPORT char log_buf[BUF_SZE];
-extern DLLEXPORT char tmp_buf[BUF_SZE];
+DLLUSAGE extern char log_buf[BUF_SZE];
+DLLUSAGE extern char tmp_buf[BUF_SZE];
 
 #define BLE(STR) color_str(FORE_BLE, BACK_ORG, STR)
 #define GRN(STR) color_str(FORE_GRN, BACK_ORG, STR)

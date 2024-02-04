@@ -13,6 +13,9 @@ int main(int argc, char** argv)
     print_msg("this is dummy");
     print_msg2("this is dummy2");
     cout << dumyi << endl;
+    #if defined(CXX_COMPILER_ID_MSVC)
+    cout << "cxx compiler is msvc..." << endl;
+    #endif
     cout << "press Enter to continue..." << endl;
     if (getchar()) {}
     

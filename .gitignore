@@ -1,0 +1,12 @@
+**/build/**
+*.out
+*.a
+*.so
+*.lib
+*.dll
+*.png
+*.jpg
+
+*.zip
+*.rar
+*.tar.gz
