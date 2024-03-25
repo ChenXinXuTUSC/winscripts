@@ -66,6 +66,10 @@ function(find_lib target_dir lib_suffix exclude_pattern_list name_list path_list
     set(path_list ${return_list}) # don't set PARENT_SCOPE here, or result won't be applied in this scope
     foreach(lib_path ${path_list})
         get_filename_component(lib_name ${lib_path} NAME_WE)
+        if(CMAKE_CXX_COMPILER_ID MATCHES ".*GNU.*")
+            # for GNU tool chain's lib prefix behaviour
+            string(SUBSTRING ${lib_name} 3 -1 lib_name)
+        endif()
         list(APPEND name_list ${lib_name})
     endforeach(lib_path ${path_list})
     set(name_list ${name_list} PARENT_SCOPE)
