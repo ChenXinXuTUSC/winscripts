@@ -6,10 +6,10 @@
 #include <chrono>
 #include <iomanip>
 
-template<typename... Type>
-std::string concate_strs(Type... strs);
-template<typename... Type>
-std::string concate_strs(Type... strs)
+template<typename... Args>
+std::string concate_strs(Args... strs);
+template<typename... Args>
+std::string concate_strs(Args... strs)
 {
     std::string concate = "";
     ((concate += std::string(strs)), ...); // only C++17 support fold expanding expression
